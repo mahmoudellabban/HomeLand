@@ -5,8 +5,6 @@ import PropertyDropDown from "./PropertyDropdown";
 import PriceRangeDropDown from "./PriceRangeDropdown";
 import {RiSearch2Line} from "react-icons/ri"
 const Search = () => {
-  const {houses} = useContext(HouseContext)
-  console.log(houses)
   return <div className='px-[30px] py-6 max-w-[1170px] mx-auto flex flex-col lg:flex-row justify-between gap-4 lg:gap-x-3 shadow-1 mt-5 rounded-lg'>
     <CountryDropDown />
     <PropertyDropDown />
