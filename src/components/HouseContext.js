@@ -28,7 +28,7 @@ const HouseContextProvider = ({ children }) => {
     setProperties(uniqueProperties);
   }, []);
   const handleClick = () => {
-    console.log("afshaaaa")
+    console.log(country, property, price)
   } 
   return (
     <HouseContext.Provider

@@ -12,7 +12,7 @@ const HouseList = () => {
         <div className='grid md:grid-cols-2 lg:grid-cols-3'>
           {houses.map((house, index) => {
             return(
-              <Link to={`/propert/${house.id}`} key={index}>
+              <Link to={`/property/${house.id}`} key={index}>
                 <House house={house} />
               </Link>
             )
