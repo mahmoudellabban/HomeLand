@@ -38,41 +38,14 @@ const HouseContextProvider = ({ children }) => {
       const housePrice = parseInt(house.price);
 
       if (
-        house.country === country &&
-        house.type === property &&
-        housePrice >= minPrice &&
-        housePrice <= maxPrice
+        (isDefault(country) || house.country === country) &&
+        (isDefault(property) || house.type === property) &&
+        (isDefault(price) || (housePrice >= minPrice && housePrice <= maxPrice))
       ) {
         return house;
       }
-      if (isDefault(country) && isDefault(property) && isDefault(price)) {
-        return house;
-      }
-      if (!isDefault(country) && isDefault(property) && isDefault(price)) {
-        return house.country === country;
-      }
-      if (!isDefault(property) && isDefault(country) && isDefault(price)) {
-        return house.type === property;
-      }
-      if (!isDefault(price) && isDefault(country) && isDefault(property)) {
-        if (housePrice >= minPrice && housePrice <= maxPrice) {
-          return house;
-        }
-      }
-      if (!isDefault(country) && !isDefault(property) && isDefault(price)) {
-        return house.country === country && house.type === property;
-      }
-      if (!isDefault(country) && isDefault(property) && !isDefault(price)) {
-        if (housePrice >= minPrice && housePrice <= maxPrice) {
-          return house.country === country;
-        }
-      }
-      if (!isDefault(country) && !isDefault(property) && !isDefault(price)) {
-        if (housePrice >= minPrice && housePrice <= maxPrice) {
-          return house.type === property;
-        }
-      }
     });
+
     setTimeout(() => {
       return (
         newHouses.length < 1 ? setHouses([]) : setHouses(newHouses),
@@ -80,6 +53,7 @@ const HouseContextProvider = ({ children }) => {
       );
     }, 1000);
   };
+
   return (
     <HouseContext.Provider
       value={{
